@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -16,11 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
         python-version: "3.11.7"
-    - name: install
+    - name: Install Dependencies
       run: pip install -r requirements.txt
-    - name: Unit tests
-      run: python -m unittest tests/test_scrapper.py
+    - name: Run Unit tests
+      run: python3 -m unittest tests/test_scrapper.py
