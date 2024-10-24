@@ -1,18 +1,24 @@
 # pylint: disable = missing-module-docstring)
 from urllib.parse import urlparse
 import pandas as pd
-from src.scrapper import UrlScrapper
+from scrapper import UrlScrapper
 
 
 class RaceScrapper(UrlScrapper):
+    """
+    Initializes the RaceScrapper with the URL and the table class to scrape
 
-    def __init__(self, url:str, table_class:str, with_header: bool):
-        super().__init__(url, table_class)
-        self.with_header = with_header
+    Args:
+        url (str): The URL of the page to scrape.
+        table_class (str): The CSS class of the table to extract data from.
+        with_header (bool): to get the header dynamically
+    """
+    def __init__(self, url: str, table_class: str, with_header: bool):
+        super().__init__(url, table_class, with_header)
         parsed_url = urlparse(self.url)
         self.base_url = f"{parsed_url.scheme}://{parsed_url.netloc}/"
 
-    def process_rows(self, **kwargs) -> tuple:
+    def process_rows(self) -> tuple:
         """
         Processes the table rows to extract race data and corresponding URLs dynamically.
 
@@ -23,20 +29,20 @@ class RaceScrapper(UrlScrapper):
                 :param **kwargs:
         """
         # Extract rows and headers from the table
-        rows, headers = self.extract_table(self.with_header)
+        rows, headers = self.extract_table()
         link_data = []
         race_data = []
 
         for row in rows:
             # Find all columns (td elements) in the row
-            columns = row.find_all('td')
+            columns = row.find_all("td")
             # Extract the text content of each cell in the row
             cells = [cell.text.strip() for cell in columns]
             race_url = None
 
             # Dynamically find the column that contains the link (an <a> tag with href attribute)
             for column in columns:
-                link = column.find('a', href=True)
+                link = column.find("a", href=True)
                 if link:
                     # Use base_url extracted in the constructor to construct the full URL
                     race_url = f"{self.base_url}{link['href']}"
@@ -51,8 +57,6 @@ class RaceScrapper(UrlScrapper):
 
         # Create DataFrame for race data and link data
         df_data = pd.DataFrame(race_data, columns=headers)
-        df_link = pd.DataFrame(link_data, columns=['date', 'link'])
+        df_link = pd.DataFrame(link_data, columns=['Date', 'Link'])
 
         return df_data, df_link
-
-

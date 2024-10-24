@@ -12,7 +12,7 @@ class TestUrlScrapper(unittest.TestCase):
         mock_get.return_value.status_code = 200
         mock_get.return_value.content = '<html><body><table class="test"><tr><td>Data</td></tr></table></body></html>'
 
-        scrapper = UrlScrapper("http://example.com", "test")
+        scrapper = UrlScrapper("http://example.com", "test", True)
         soup = scrapper.fetch_data()
 
         self.assertIsInstance(soup, BeautifulSoup)
@@ -22,7 +22,7 @@ class TestUrlScrapper(unittest.TestCase):
         # Mock a failed response
         mock_get.return_value.status_code = 404
 
-        scrapper = UrlScrapper("http://example.com", "test")
+        scrapper = UrlScrapper("http://example.com", "test", True)
 
         with self.assertRaises(Exception) as context:
             scrapper.fetch_data()
@@ -46,8 +46,8 @@ class TestUrlScrapper(unittest.TestCase):
             </body></html>
         '''
 
-        scrapper = UrlScrapper("http://example.com", "test")
-        rows, headers = scrapper.extract_table(True)
+        scrapper = UrlScrapper("http://example.com", "test", True)
+        rows, headers = scrapper.extract_table()
 
         self.assertEqual(len(headers), 2)
         self.assertEqual(headers[0], "Header 1")
@@ -70,8 +70,8 @@ class TestUrlScrapper(unittest.TestCase):
             </body></html>
         '''
 
-        scrapper = UrlScrapper("http://example.com", "test")
-        df = scrapper.process_rows(True)
+        scrapper = UrlScrapper("http://example.com", "test", True)
+        df = scrapper.process_rows()
 
         self.assertIsInstance(df, pd.DataFrame)
         self.assertEqual(df.shape, (2, 2))  # 2 rows, 2 columns
