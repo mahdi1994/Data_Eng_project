@@ -13,7 +13,7 @@ class UrlScrapper:
         table_class (str): The CSS class of the table to extract data from.
     """
 
-    def __init__(self, url : str, table_class :str, with_header: bool):
+    def __init__(self, url: str, table_class: str, with_header: bool):
         self.url = url
         self.table_class = table_class
         self.with_header = with_header

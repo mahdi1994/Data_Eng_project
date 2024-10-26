@@ -4,7 +4,7 @@ import pandas as pd
 from scrapper import UrlScrapper
 
 
-class RaceScrapper(UrlScrapper):
+class RacesScrapper(UrlScrapper):
     """
     Initializes the RaceScrapper with the URL and the table class to scrape
 
@@ -13,6 +13,7 @@ class RaceScrapper(UrlScrapper):
         table_class (str): The CSS class of the table to extract data from.
         with_header (bool): to get the header dynamically
     """
+
     def __init__(self, url: str, table_class: str, with_header: bool):
         super().__init__(url, table_class, with_header)
         parsed_url = urlparse(self.url)
@@ -26,7 +27,7 @@ class RaceScrapper(UrlScrapper):
             tuple: A tuple containing two DataFrames:
                 - df_data: DataFrame with the race data extracted from the table.
                 - df_link: DataFrame with the date and the dynamic race URL for each row.
-                :param **kwargs:
+
         """
         # Extract rows and headers from the table
         rows, headers = self.extract_table()
@@ -50,13 +51,15 @@ class RaceScrapper(UrlScrapper):
 
             # Assume the first column contains the date
             date = columns[0].text.strip()
+            race_name = columns[2].text.strip()
             # Store the date and race URL in link_data
-            link_data.append([date, race_url])
+            link_data.append([date, race_name, race_url])
             # Store the full row data in race_data
             race_data.append(cells)
 
         # Create DataFrame for race data and link data
         df_data = pd.DataFrame(race_data, columns=headers)
-        df_link = pd.DataFrame(link_data, columns=['Date', 'Link'])
+        df_link = pd.DataFrame(link_data, columns=["Date", "Race_Name", "Link"])
+        df_link["Is_one_day_race"] = df_link["Date"].apply(lambda x: x.find("-") == -1)
 
         return df_data, df_link
