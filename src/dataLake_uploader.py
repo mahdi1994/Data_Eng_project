@@ -3,7 +3,11 @@ import  json
 from azure.storage.filedatalake import DataLakeServiceClient
 
 class DataLakeUploader:
-    def __init__(self, account_url, filesystem_name):
+    def __init__(self, account_url, filesystem_name) -> object:
+        """
+
+        :rtype: object
+        """
         self.service_client = DataLakeServiceClient(account_url=account_url)
         self.filesystem_client = self.service_client.get_file_system_client(filesystem_name)
 
@@ -30,6 +34,6 @@ class DataLakeUploader:
         json_str = json.dumps(data)
         json_bytes = BytesIO(json_str.encode('utf-8'))
         file_client = self.filesystem_client.get_file_client(file_name)
-        file_client.upload_data(json_bytes.getvalue(), overwrite=True)
-        json_bytes.close()
+        file_client.upload_data(json_bytes, overwrite=True)
+        #json_str.close()
         print(f"JSON data uploaded to {file_name} in filesystem.")

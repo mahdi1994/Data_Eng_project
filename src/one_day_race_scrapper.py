@@ -5,7 +5,9 @@ This module defines the `OneDayRaceScrapper` class, which extends `UrlScrapper` 
 race information and race results from one-day cycling race pages.
 """
 
-from scrapper import UrlScrapper
+from src.scrapper import UrlScrapper
+
+
 
 
 class OneDayRaceScrapper(UrlScrapper):

@@ -1,7 +1,7 @@
 # pylint: disable = missing-module-docstring)
 from urllib.parse import urlparse
 import pandas as pd
-from scrapper import UrlScrapper
+from src.scrapper import UrlScrapper
 
 
 class RacesScrapper(UrlScrapper):
