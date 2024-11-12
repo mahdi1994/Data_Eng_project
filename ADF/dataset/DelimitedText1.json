@@ -1,0 +1,43 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLG2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "cleansed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Start_Date",
+				"type": "String"
+			},
+			{
+				"name": "End_Date",
+				"type": "String"
+			},
+			{
+				"name": "Race",
+				"type": "String"
+			},
+			{
+				"name": "Winner",
+				"type": "String"
+			},
+			{
+				"name": "Class",
+				"type": "String"
+			}
+		]
+	}
+}

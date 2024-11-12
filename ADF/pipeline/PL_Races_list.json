@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Data flow1",
+				"name": "DF_races_list",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -17,7 +17,12 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow1",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"RawRacingList": {
+								"Year_Folder": "2022"
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
