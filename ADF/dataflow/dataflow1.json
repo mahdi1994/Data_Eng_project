@@ -1,0 +1,30 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Races_list_csv",
+						"type": "DatasetReference"
+					},
+					"name": "RawRacingList"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     rowUrlColumn: 'FileName') ~> RawRacingList",
+				"RawRacingList derive(Year = substring(FileName, 13, 4)) ~> derivedColumn1"
+			]
+		}
+	}
+}
