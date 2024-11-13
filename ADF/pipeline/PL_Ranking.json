@@ -141,8 +141,7 @@
 												"physicalType": "String"
 											},
 											"sink": {
-												"name": "#",
-												"type": "String",
+												"name": "Ranking",
 												"physicalType": "UTF8"
 											}
 										},
