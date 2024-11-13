@@ -1,0 +1,66 @@
+{
+	"name": "DF_Races_List",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Races_list_csv",
+						"type": "DatasetReference"
+					},
+					"name": "sourceCsvRacesList"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_Sink_races_list",
+						"type": "DatasetReference"
+					},
+					"name": "sinkRacesListParquet"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumnRacesList"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date0 as string,",
+				"          Date1 as string,",
+				"          Race as string,",
+				"          Winner as string,",
+				"          Class as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     rowUrlColumn: 'FilePath',",
+				"     wildcardPaths:['races_list/*/list.csv']) ~> sourceCsvRacesList",
+				"sourceCsvRacesList derive(Year = substring(FilePath, 13, 4),",
+				"          {Start Date} = toDate(concat(split(Date1, '.')[1], '-', split(Date1, '.')[2], '-', substring(FilePath, 13, 4)), 'dd-MM-yyyy'),",
+				"          {End Date} = toDate(concat(split(iif(instr(Date0, '-') == 0, Date0, trim(split(Date0, '-')[2])), '.')[1], '-', split(iif(instr(Date0, '-') == 0, Date0, trim(split(Date0, '-')[2])), '.')[2], '-', substring(FilePath, 13, 4)), 'dd-MM-yyyy'),",
+				"          IsOneDayRace = iif(Date0 == Date1, true(), false())) ~> derivedColumnRacesList",
+				"derivedColumnRacesList sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Start_Date = {Start Date},",
+				"          End_Date = {End Date},",
+				"          Race,",
+				"          Winner,",
+				"          Class,",
+				"          Year,",
+				"          IsOneDayRace",
+				"     )) ~> sinkRacesListParquet"
+			]
+		}
+	}
+}

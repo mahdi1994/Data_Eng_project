@@ -1,0 +1,20 @@
+{
+	"name": "DS_Sink_races_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLG2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "races_list",
+				"fileSystem": "cleansed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
