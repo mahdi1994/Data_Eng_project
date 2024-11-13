@@ -1,21 +1,19 @@
 {
-	"name": "DS_Races_list_csv",
+	"name": "DS_Sink_races_list",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_ADLG2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "raw"
+				"folderPath": "races_list2",
+				"fileSystem": "cleansed"
 			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
+			"compressionCodec": "snappy"
 		},
 		"schema": []
 	}
