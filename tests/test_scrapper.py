@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from bs4 import BeautifulSoup
-from src.scrapper import UrlScrapper, pd # Replace 'your_module' with the actual module name
+from src.scrapper import UrlScrapper, pd
 
 
 class TestUrlScrapper(unittest.TestCase):
