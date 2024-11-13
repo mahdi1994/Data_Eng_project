@@ -1,0 +1,50 @@
+{
+	"name": "DS_Sink_Ranking_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLG2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"File_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().File_Name",
+					"type": "Expression"
+				},
+				"folderPath": "ranking2",
+				"fileSystem": "cleansed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Ranking",
+				"type": "UTF8"
+			},
+			{
+				"name": "Rider",
+				"type": "UTF8"
+			},
+			{
+				"name": "Team",
+				"type": "UTF8"
+			},
+			{
+				"name": "Country",
+				"type": "UTF8"
+			},
+			{
+				"name": "Score",
+				"type": "UTF8"
+			}
+		]
+	}
+}
