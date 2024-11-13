@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "races_list2",
+				"folderPath": "races_list",
 				"fileSystem": "cleansed"
 			},
 			"compressionCodec": "snappy"
