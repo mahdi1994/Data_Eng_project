@@ -1,0 +1,281 @@
+{
+	"name": "DS_json_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLG2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "races",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"race_info": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Date": {
+								"type": "string"
+							},
+							"Start time": {
+								"type": "string"
+							},
+							"Avg. speed winner": {
+								"type": "string"
+							},
+							"Classification": {
+								"type": "string"
+							},
+							"Race category": {
+								"type": "string"
+							},
+							"Distance": {
+								"type": "string"
+							},
+							"Points scale": {
+								"type": "string"
+							},
+							"UCI scale": {
+								"type": "string"
+							},
+							"Parcours type": {
+								"type": "string"
+							},
+							"ProfileScore": {
+								"type": "string"
+							},
+							"Vertical meters": {
+								"type": "string"
+							},
+							"Departure": {
+								"type": "string"
+							},
+							"Arrival": {
+								"type": "string"
+							},
+							"Race ranking": {
+								"type": "string"
+							},
+							"Startlist quality score": {
+								"type": "string"
+							},
+							"Won how": {
+								"type": "string"
+							},
+							"Avg. temperature": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"rows_data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Rnk": {
+								"type": "string"
+							},
+							"BIB": {
+								"type": "string"
+							},
+							"H2H": {
+								"type": "string"
+							},
+							"Specialty": {
+								"type": "string"
+							},
+							"Rider": {
+								"type": "string"
+							},
+							"Age": {
+								"type": "string"
+							},
+							"Team": {
+								"type": "string"
+							},
+							"UCI": {
+								"type": "string"
+							},
+							"Pnt": {
+								"type": "string"
+							},
+							"Time": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Final GC": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Rnk": {
+								"type": "string"
+							},
+							"Prev": {
+								"type": "string"
+							},
+							"▼▲": {
+								"type": "string"
+							},
+							"BIB": {
+								"type": "string"
+							},
+							"H2H": {
+								"type": "string"
+							},
+							"Specialty": {
+								"type": "string"
+							},
+							"Rider": {
+								"type": "string"
+							},
+							"Age": {
+								"type": "string"
+							},
+							"Team": {
+								"type": "string"
+							},
+							"UCI": {
+								"type": "string"
+							},
+							"Pnt": {
+								"type": "string"
+							},
+							"": {
+								"type": "string"
+							},
+							"Time": {
+								"type": "string"
+							},
+							"Time won/lost": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Points classification": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Rnk": {
+								"type": "string"
+							},
+							"Prev": {
+								"type": "string"
+							},
+							"▼▲": {
+								"type": "string"
+							},
+							"BIB": {
+								"type": "string"
+							},
+							"H2H": {
+								"type": "string"
+							},
+							"Specialty": {
+								"type": "string"
+							},
+							"Rider": {
+								"type": "string"
+							},
+							"Age": {
+								"type": "string"
+							},
+							"Team": {
+								"type": "string"
+							},
+							"Points": {
+								"type": "string"
+							},
+							"Today": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Youth classification": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Rnk": {
+								"type": "string"
+							},
+							"Prev": {
+								"type": "string"
+							},
+							"▼▲": {
+								"type": "string"
+							},
+							"BIB": {
+								"type": "string"
+							},
+							"H2H": {
+								"type": "string"
+							},
+							"Specialty": {
+								"type": "string"
+							},
+							"Rider": {
+								"type": "string"
+							},
+							"Age": {
+								"type": "string"
+							},
+							"Team": {
+								"type": "string"
+							},
+							"Time": {
+								"type": "string"
+							},
+							"Time won/lost": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"Teams classification": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Rnk": {
+								"type": "string"
+							},
+							"Prev": {
+								"type": "string"
+							},
+							"▼▲": {
+								"type": "string"
+							},
+							"Team": {
+								"type": "string"
+							},
+							"Class": {
+								"type": "string"
+							},
+							"Time": {
+								"type": "string"
+							},
+							"Time won/lost": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
