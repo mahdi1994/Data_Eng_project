@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "PL_Consolidate_Race_Folders3",
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get Metadata Races Folder",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -36,7 +36,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Get Metadata Races Folder",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -45,12 +45,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Get Metadata Races Folder').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Set variable1",
+							"name": "Set variable Race Folder Name",
 							"type": "SetVariable",
 							"dependsOn": [],
 							"policy": {
@@ -67,11 +67,11 @@
 							}
 						},
 						{
-							"name": "Lookup1",
+							"name": "Lookup for normalized name",
 							"type": "Lookup",
 							"dependsOn": [
 								{
-									"activity": "Set variable1",
+									"activity": "Set variable Race Folder Name",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -108,11 +108,11 @@
 							}
 						},
 						{
-							"name": "Set variable2",
+							"name": "Set Dest Folder Name",
 							"type": "SetVariable",
 							"dependsOn": [
 								{
-									"activity": "Lookup1",
+									"activity": "Lookup for normalized name",
 									"dependencyConditions": [
 										"Succeeded"
 									]
@@ -132,11 +132,11 @@
 							}
 						},
 						{
-							"name": "Copy data1",
+							"name": "Copy data",
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Set variable2",
+									"activity": "Set Dest Folder Name",
 									"dependencyConditions": [
 										"Succeeded"
 									]
