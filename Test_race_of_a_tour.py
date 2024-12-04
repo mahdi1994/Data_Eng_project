@@ -31,14 +31,6 @@ def scrape_races(url, data_lake_uploader, year):
 def process_race(df_link_row, data_lake_uploader, year):
     """Process each race link for one-day or multi-stage races."""
 
-    # if df_link_row['Is_one_day_race']:
-    #     one_day_race_scrapper = OneDayRaceScrapper(
-    #         df_link_row['Link'], "results basic moblist10", "infolist", True
-    #     )
-    #     results_and_infos = one_day_race_scrapper.stage_process()
-    #     #return results_and_infos
-    #     # Create folder and upload file
-    #     data_lake_uploader.upload_json(f"/{year}/races/results.json", results_and_infos)
     link = df_link_row['Link']
     race_name = df_link_row['Race_Name']
     if df_link_row['Is_one_day_race']:
