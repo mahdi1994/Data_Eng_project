@@ -7,4 +7,4 @@ Data Storage: Store raw and processed data in an Azure Data Lake with a well-org
 Data Transformation: Process and clean raw data using tools like Databricks and Azure Data Factory, and convert data into Parquet and Delta formats for optimized querying.
 
 <h2 align="center">Pipeline Schema</h2>
-![Pipeline Schema](https://github.com/mahdi1994/Data_Eng_project/blob/dev/images/Schema.png)
+![Pipeline Schema](https://github.com/mahdi1994/Data_Eng_project/blob/main/images/Schema.png)
